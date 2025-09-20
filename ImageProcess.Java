@@ -28,18 +28,29 @@ public class ImageProcess {
             for (int y = 1; y<img.getHeight(); y++) {
                 for (int i=-1; i<2; i++) {
                     int[][] smallGrid = new int[3][3];
-                    smallGrid[0][0] = new Color(img.getRed(x-1, y-1));
-                    smallGrid[0][1] = new Color(img.getRed(x, y-1));
-                    smallGrid[0][2] = new Color(img.getRed(x+1, y-1));
-                    smallGrid[1][0] = new Color(img.getRed(x-1, y));
-                    smallGrid[1][1] = new Color(img.getRed(x, y));
-                    smallGrid[1][2] = new Color(img.getRed(x+1, y));
-                    smallGrid[2][0] = new Color(img.getRed(x-1, y+1));
-                    smallGrid[2][1] = new Color(img.getRed(x1, y+1));
-                    smallGrid[2][2] = new Color(img.getRed(x+1, y+1));
+                    smallGrid[0][0] = new Color(img.getRGB(x-1, y-1));
+                    smallGrid[0][1] = new Color(img.getRGB(x, y-1));
+                    smallGrid[0][2] = new Color(img.getRGB(x+1, y-1));
+                    smallGrid[1][0] = new Color(img.getRGB(x-1, y));
+                    smallGrid[1][1] = new Color(img.getRGB(x, y));
+                    smallGrid[1][2] = new Color(img.getRGB(x+1, y));
+                    smallGrid[2][0] = new Color(img.getRGB(x-1, y+1));
+                    smallGrid[2][1] = new Color(img.getRGB(x1, y+1));
+                    smallGrid[2][2] = new Color(img.getRGB(x+1, y+1));
+                    int r = 0;
+                    int g = 0;
+                    int b = 0;
                     for (int i = 0; i < 3; i++) {
                         for (int j = 0; j < 3; j++) {
-                            int r = getRed(smallGrid[i][j]);
+                            for (int c = 0; c < 3; i++){
+                                if (c==0) {
+                                    r = smallGrid[i][j].getRed();
+                                } else if ( c==1) {
+                                    g = smallGrid[i][j].getGreen();
+                                } else {
+                                    b = smallGrid[i][j].getBlue();
+                                }
+                            }
                         }
                     }
                 }
