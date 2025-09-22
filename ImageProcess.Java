@@ -44,14 +44,18 @@ public class ImageProcess {
                 smallGrid[2][1] = new Color(img.getRGB(x1, y+1));
                 smallGrid[2][2] = new Color(img.getRGB(x+1, y+1));
 
-                int r = 0;
-                int g = 0;
-                int b = 0;
+                int rSumx = 0;
+                int gSumx = 0;
+                int bSumx = 0;
+
+                int rSumy = 0;
+                int gSumy = 0;
+                int bSumy = 0;
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
-                        r += smallGrid[i][j].getRed() * xfilter[i][j];
-                        g += smallGrid[i][j].getGreen() * xfilter[i][j];
-                        b += smallGrid[i][j].getBlue() * xfilter[i][j];
+                        rSumx += smallGrid[i][j].getRed() * xfilter[i][j];
+                        gSumx += smallGrid[i][j].getGreen() * xfilter[i][j];
+                        bSumx += smallGrid[i][j].getBlue() * xfilter[i][j];
                         
                         }
                     }
