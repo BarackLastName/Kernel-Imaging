@@ -57,9 +57,15 @@ public class ImageProcess {
                         gSumx += smallGrid[i][j].getGreen() * xfilter[i][j];
                         bSumx += smallGrid[i][j].getBlue() * xfilter[i][j];
                         
+                        rSumy += smallGrid[i][j].getRed() * yfilter[i][j];
+                        gSumy += smallGrid[i][j].getGreen() * yfilter[i][j];
+                        bSumy += smallGrid[i][j].getBlue() * yfilter[i][j];
                         }
                     }
                 }
+                int gX = (rSumx + gSumx + bSumx) / 3;
+                int gY = (rSumy + gSumy + bSumy) / 3;
+                int gray = Math.sqrt(gX**2 + gY**2);
             }
         }
     }
