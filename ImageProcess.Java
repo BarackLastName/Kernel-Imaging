@@ -4,11 +4,12 @@ import java.io.File;
 import java.io.IOException;
 
 public class ImageProcess {
+    
     public static void main(String args[]) {
-
+        imageEdger();
     }
 
-    public void imageEdger() {
+    public static void imageEdger() {
         BufferedImage img = null, edges = null;
         try {
             img = ImageIO.read(new File("Chinese picture.png"));
@@ -32,8 +33,8 @@ public class ImageProcess {
                            {-1, -2, -1}}
         BufferedImage edges = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
         
-        for (int x = 1; x<img.getWidth(); x++) {
-            for (int y = 1; y<img.getHeight(); y++) {
+        for (int x = 1; x < img.getWidth() - 1; x++) {
+            for (int y = 1; y<img.getHeight() - 1; y++) {
                 int[][] smallGrid = new int[3][3];
                 smallGrid[0][0] = new Color(img.getRGB(x-1, y-1));
                 smallGrid[0][1] = new Color(img.getRGB(x, y-1));
@@ -66,9 +67,9 @@ public class ImageProcess {
                 }
                 int gX = (rSumx + gSumx + bSumx) / 3;
                 int gY = (rSumy + gSumy + bSumy) / 3;
-                int gray = Math.sqrt(gX**2 + gY**2);
-
-                edges.setRGB(x, y, gray);
+                int g = Math.sqrt(gX**2 + gY**2);
+                int rgb = ((g&0x0ff)<<16)|((g&0x0ff)<<8)|(g&0x0ff);
+                edges.setRGB(x, y, rgb);
             }
         }
     }
