@@ -30,6 +30,7 @@ public class ImageProcess {
         int[][] yfilter = {{1, 2, 1}, 
                            {0, 0, 0},
                            {-1, -2, -1}}
+        BufferedImage edges = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
         
         for (int x = 1; x<img.getWidth(); x++) {
             for (int y = 1; y<img.getHeight(); y++) {
@@ -66,6 +67,8 @@ public class ImageProcess {
                 int gX = (rSumx + gSumx + bSumx) / 3;
                 int gY = (rSumy + gSumy + bSumy) / 3;
                 int gray = Math.sqrt(gX**2 + gY**2);
+
+                edges.setRGB(x, y, gray);
             }
         }
     }
